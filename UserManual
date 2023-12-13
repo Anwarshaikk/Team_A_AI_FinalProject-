@@ -1,0 +1,91 @@
+# Tic Tac Toe Game with AI - User Manual
+
+## Overview
+
+Welcome to the Tic Tac Toe Game with AI! This project allows you to play the classic Tic Tac Toe game against an artificial intelligence (AI) player. The AI player has been trained using Q-learning, making it a challenging opponent.
+
+## Table of Contents
+
+1. [Installation](#installation)
+2. [Game Rules](#game-rules)
+3. [Starting the Game](#starting-the-game)
+4. [Playing the Game](#playing-the-game)
+5. [Training the AI Players](#training-the-ai-players)
+6. [Viewing Training Progress](#viewing-training-progress)
+
+## Installation
+
+To play the Tic Tac Toe game on your local machine, follow these steps:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/tic-tac-toe-ai.git
+   cd tic-tac-toe-ai
+  
+  Run the main script;
+      python tic_tac_toe.py
+
+2. Game Rules
+The Tic Tac Toe game is played on a 3x3 grid. Two players take turns marking a cell with their respective markers, "X" or "O." The player who successfully places three of their markers in a horizontal, vertical, or diagonal row wins the game. If all cells are filled, and no player has three in a row, the game is a tie.
+
+3.Starting the Game
+When you run the script, the game will start automatically. You can choose to play against the AI player or watch two AI players compete against each other.
+
+4.Playing the Game
+If you choose to play against the AI player, follow these steps:
+
+The board will be displayed, and it's your turn as "O."
+Enter your move by providing the cell index (1-9) where you want to place your marker.
+The AI player (X) will then make its move.
+The game continues until a winner is determined or the game ends in a tie.
+
+5. Training the AI Players
+The AI players can be trained to improve their performance. During training, two AI players compete against each other, and their strategies are updated based on the outcomes.
+
+To train the AI players, run the following code in your Python environment:
+TRAINING_EXAMPLES = 10000
+TRAINING_EPSILON_1 = 0.2
+TRAINING_EPSILON_2 = 0.3
+
+# train AI player
+ai_player_1 = AIPlayer()
+ai_player_2 = AIPlayer()
+print('Training the AI players...')
+ai_player_1.EPSILON = TRAINING_EPSILON_1
+ai_player_2.EPSILON = TRAINING_EPSILON_2
+
+# training
+for _ in range(TRAINING_EXAMPLES):
+    game = TicTacToe(ai_player_1, ai_player_2)
+    game.play()
+
+print('Training is Done')
+
+6.Viewing Training Progress
+To visualize the training progress, the cumulative rewards for both AI players can be plotted. After training, the AI player with exploration set to 0 (EPSILON = 0) can play optimally.
+
+# plot accumulated rewards for the two competing AI players
+plt.subplots()
+plt.plot(np.cumsum(ai_player_1.rewards))
+plt.plot(np.cumsum(ai_player_2.rewards))
+plt.xlabel('Training games')
+plt.ylabel('Cumulative reward')
+plt.title('Training progress')
+plt.legend(['AI player 1','AI player 2'])
+
+# plot accumulated rewards for the two competing AI players for the first 100 games
+plt.subplots()
+plt.plot(np.cumsum(ai_player_1.rewards[0:100]))
+plt.plot(np.cumsum(ai_player_2.rewards[0:100]))
+plt.xlabel('Training games')
+plt.ylabel('Cumulative reward')
+plt.title('Training progress for the first 100 games')
+plt.legend(['AI player 1','AI player 2'])
+
+plt.show()
+
+Feel free to explore and enjoy playing Tic Tac Toe against the trained AI player!
+
+For any issues or feedback, please refer to the GitHub repository and create an issue.
+
+Enjoy the game!
